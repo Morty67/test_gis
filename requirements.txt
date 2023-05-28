@@ -38,7 +38,7 @@ packaging==23.1
 pathspec==0.11.1
 pipwin==0.5.2
 platformdirs==3.5.1
-psycopg2==2.9.6
+psycopg2-binary==2.9.6
 pycodestyle==2.10.0
 pyflakes==3.0.1
 pyjsparser==2.7.1

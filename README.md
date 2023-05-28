@@ -5,6 +5,7 @@ This project is the server-side component of a web application that provides an 
 
 *  Backend: Django REST Framework.
 *  Database: PostgreSQL with PostGIS extension.
+*  Docker
 
 
 ## Installing / Getting started:
@@ -18,10 +19,24 @@ venv\Scripts\activate (on Windows)
 source venv/bin/activate (on macOS)
 
 pip install -r requirements.txt
+Your settings for DB in .env file:
+POSTGRES_DB=<POSTGRES_DB>
+POSTGRES_USER=<POSTGRES_USER>
+POSTGRES_PASSWORD=<POSTGRES_PASSWORD>
+POSTGRES_HOST=<POSTGRES_HOST>
+SECRET_KEY=<SECRET_KEY>
 
 python manage.py migrate
 python manage.py runserver
 ```
+
+## Run Docker
+Docker must be installed 
+```shell
+*  docker-compose build
+*  docker-compose up
+```
+
 ## How to get access
 
 Domain:
