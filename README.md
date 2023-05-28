@@ -35,7 +35,7 @@ Docker must be installed
 ```shell
 *  docker-compose build
 *  docker-compose up
-* localhost:8888
+*  localhost:8888
 ```
 
 ## How to get access
