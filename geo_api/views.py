@@ -1,3 +1,5 @@
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -13,19 +15,83 @@ class PlaceViewSet(viewsets.ModelViewSet):
     serializer_class = PlaceSerializer
 
     def get_queryset(self):
+        """
+        Returns the queryset of all Place objects.
+        """
         queryset = super().get_queryset()
         return queryset
 
-    @action(detail=False, methods=["POST"])
-    def create_place(self, request):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            place = serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def list(self, request, *args, **kwargs):
+        """
+        Returns a list of all Place objects.
+        """
+        return super().list(request, *args, **kwargs)
 
+    def create(self, request, *args, **kwargs):
+        """
+        Creates a new Place object.
+        """
+        return super().create(request, *args, **kwargs)
+
+    def retrieve(self, request, *args, **kwargs):
+        """
+        Retrieves details of a specific Place object by its identifier (id).
+        """
+        return super().retrieve(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        """
+        Updates a specific Place object by its identifier (id).
+        """
+        return super().update(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        """
+        Partially updates a specific Place object by its identifier (id).
+        """
+        return super().partial_update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        """
+        Deletes a specific Place object by its identifier (id).
+        """
+        return super().destroy(request, *args, **kwargs)
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="latitude",
+                type=OpenApiTypes.FLOAT,
+                location=OpenApiParameter.QUERY,
+                description="Latitude coordinate (ex. ?latitude=6.4474)",
+                required=True,
+            ),
+            OpenApiParameter(
+                name="longitude",
+                type=OpenApiTypes.FLOAT,
+                location=OpenApiParameter.QUERY,
+                description="Longitude coordinate (ex. ?latitude=2.5241)",
+                required=True,
+            ),
+        ],
+        responses={200: PlaceSerializer},
+        description="Get the nearest place to a given point",
+    )
     @action(detail=False, methods=["GET"])
     def get_nearest_place(self, request):
+        """
+        Retrieves the nearest Place to a given point based on latitude and longitude coordinates.
+
+        Args:
+            request: The request object containing the latitude and longitude parameters.
+
+        Returns:
+            Response: The serialized data of the nearest Place.
+
+        Raises:
+            ValueError: If the latitude or longitude is invalid.
+
+        """
         latitude = request.GET.get("latitude")
         longitude = request.GET.get("longitude")
 
