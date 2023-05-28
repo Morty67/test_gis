@@ -74,13 +74,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "test_gis.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-GDAL_LIBRARY_PATH = "C:/OSGeo4W/bin/gdal306.dll"
-
-os.environ["GDAL_LIBRARY_PATH"] = GDAL_LIBRARY_PATH
-
-POSTGIS_VERSION = (3, 0, 0)  # Встановлена версія PostGIS
-POSTGIS_PATH = "C:/PROGRA~1/POSTGR~1/15/lib/postgis-3"
-
 
 DATABASES = {
     "default": {
