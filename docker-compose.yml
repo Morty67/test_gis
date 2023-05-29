@@ -24,5 +24,7 @@ services:
     image: postgis/postgis:15-3.3
     ports:
       - "5432:5432"
+    volumes:
+      - C:/Program\ Files/PostgreSQL/15/data:/var/lib/postgresql
     env_file:
       - .env
