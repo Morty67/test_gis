@@ -25,6 +25,6 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - C:/Program\ Files/PostgreSQL/15/data:/var/lib/postgresql
+      - ${POSTGRES_DATA_DIR}:/var/lib/postgresql
     env_file:
       - .env
