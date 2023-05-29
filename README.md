@@ -10,7 +10,7 @@ This project is the server-side component of a web application that provides an 
 
 ## Installing / Getting started:
 ```shell
-To get started, you need to clone the repository from GitHub: https://github.com/Morty67/test_gis/tree/develop
+To get started, you need to clone the repository from GitHub: https://github.com/Morty67/test_gis
 Python 3 must be installed
 
 cd config
