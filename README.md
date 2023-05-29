@@ -30,7 +30,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-## Run Docker
+## Run With Docker
 Docker must be installed 
 ```shell
 *  docker-compose build
