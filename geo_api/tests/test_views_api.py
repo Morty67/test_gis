@@ -8,6 +8,9 @@ from geo_api.models import Place
 from geo_api.serializers import PlaceSerializer
 
 
+URL_LIST = reverse("geo:place-list")
+
+
 class PlaceViewSetTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -26,8 +29,7 @@ class PlaceViewSetTestCase(TestCase):
         """
         Test the listing of all places.
         """
-        url = reverse("geo:place-list")
-        response = self.client.get(url)
+        response = self.client.get(URL_LIST)
         places = Place.objects.all()
         serializer = PlaceSerializer(places, many=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -37,8 +39,7 @@ class PlaceViewSetTestCase(TestCase):
         """
         Test the creation of a new place.
         """
-        url = reverse("geo:place-list")
-        response = self.client.post(url, data=self.place_data)
+        response = self.client.post(URL_LIST, data=self.place_data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         place = Place.objects.get(pk=response.data["id"])
         serializer = PlaceSerializer(place)
@@ -48,13 +49,12 @@ class PlaceViewSetTestCase(TestCase):
         """
         Test creating a place with invalid data.
         """
-        url = reverse("geo:place-list")
         invalid_data = {
             "name": "",
             "description": "This is a test place",
             "geom": "POINT (10 20)",
         }
-        response = self.client.post(url, data=invalid_data)
+        response = self.client.post(URL_LIST, data=invalid_data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertFalse(
             Place.objects.filter(name=invalid_data["name"]).exists()
