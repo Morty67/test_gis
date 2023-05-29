@@ -1,11 +1,11 @@
+import re
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.gis.geos import Point
 from rest_framework import status
 from rest_framework.test import APIClient
 from geo_api.models import Place
 from geo_api.serializers import PlaceSerializer
-from django.contrib.gis.geos import Point
-import re
 
 
 class PlaceViewSetTestCase(TestCase):
