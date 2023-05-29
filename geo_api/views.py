@@ -25,37 +25,49 @@ class PlaceViewSet(viewsets.ModelViewSet):
         """
         Returns a list of all Place objects.
         """
-        return super().list(request, *args, **kwargs)
+        return super().list(
+            request, *args, **kwargs, status=status.HTTP_200_OK
+        )
 
     def create(self, request, *args, **kwargs):
         """
         Creates a new Place object.
         """
-        return super().create(request, *args, **kwargs)
+        return super().create(
+            request, *args, **kwargs, status=status.HTTP_201_CREATED
+        )
 
     def retrieve(self, request, *args, **kwargs):
         """
         Retrieves details of a specific Place object by its identifier (id).
         """
-        return super().retrieve(request, *args, **kwargs)
+        return super().retrieve(
+            request, *args, **kwargs, status=status.HTTP_200_OK
+        )
 
     def update(self, request, *args, **kwargs):
         """
         Updates a specific Place object by its identifier (id).
         """
-        return super().update(request, *args, **kwargs)
+        return super().update(
+            request, *args, **kwargs, status=status.HTTP_200_OK
+        )
 
     def partial_update(self, request, *args, **kwargs):
         """
         Partially updates a specific Place object by its identifier (id).
         """
-        return super().partial_update(request, *args, **kwargs)
+        return super().partial_update(
+            request, *args, **kwargs, status=status.HTTP_200_OK
+        )
 
     def destroy(self, request, *args, **kwargs):
         """
         Deletes a specific Place object by its identifier (id).
         """
-        return super().destroy(request, *args, **kwargs)
+        return super().destroy(
+            request, *args, **kwargs, status=status.HTTP_204_NO_CONTENT
+        )
 
     @extend_schema(
         parameters=[
@@ -113,4 +125,4 @@ class PlaceViewSet(viewsets.ModelViewSet):
         )
 
         serializer = self.serializer_class(nearest_place)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
