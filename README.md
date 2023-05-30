@@ -13,7 +13,6 @@ This project is the server-side component of a web application that provides an 
 To get started, you need to clone the repository from GitHub: https://github.com/Morty67/test_gis
 Python 3 must be installed
 
-cd config
 python -m venv venv
 venv\Scripts\activate (on Windows)
 source venv/bin/activate (on macOS)
